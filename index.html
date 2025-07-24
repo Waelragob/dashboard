@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BSafe Group - Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+</head>
+<body data-theme="light">
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebar">
+        <div class="logo"><img src="logo/logo.png" alt="" width="60" height="60"></div>
+        <a href="#" class="active"><i class="bi bi-speedometer2"></i> Dashboard</a>
+        <a href="projects.html"><i class="bi bi-briefcase"></i> Projects</a>
+        <a href="tickets.html"><i class="bi bi-ticket-detailed"></i> Tickets</a>
+        <a href="users.html"><i class="bi bi-people"></i> Users</a>
+        <a href="add-user.html"><i class="bi bi-person-plus"></i> Add User</a>
+        <a href="add-service.html"><i class="bi bi-briefcase"></i> Add Service</a>
+        <a href="add-article.html"><i class="bi bi-newspaper"></i> Add Article</a>
+        <a href="user-settings.html"><i class="bi bi-gear"></i> Settings</a>
+    </nav>
+    <!-- Menu toggle for mobile -->
+    <div class="menu-toggle" onclick="toggleSidebar()">
+        <i class="bi bi-list"></i>
+    </div>
+    <!-- Content -->
+    <div class="content">
+        <!-- Top Navigation -->
+        <div class="top-nav">
+            <div style="position: relative; left: 30%;">Dashboard</div>
+            <div class="d-flex align-items-center">
+               
+               <div class="user-info dropdown">
+                <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="https://via.placeholder.com/35" alt="User" class="rounded-circle">
+                    <span class="ms-2 d-none d-md-inline">John Doe</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end p-3">
+                   
+                    <li><a class="dropdown-item" href="user-settings.html"><i class="bi bi-gear me-2"></i>Settings</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <button class="btn btn-outline-danger ms-3 mb-3">
+                    <i class="bi bi-box-arrow-right"></i>
+                </button>
+                 <div class="dark-mode-toggle">
+                    <input type="checkbox" id="darkModeToggle">
+                    <label for="darkModeToggle"></label>
+                </div>
+                </ul>
+            </div>
+               <ul class="dropdown-menu dropdown-menu-end">
+                   
+                    <li><a class="dropdown-item" href="user-settings.html"><i class="bi bi-gear me-2"></i>Settings</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <button class="btn btn-outline-danger ms-3">
+                    <i class="bi bi-box-arrow-right"></i>
+                </button>
+                </ul>
+            </div>
+        </div>
+        <!-- Main Content -->
+        <div class="dashboard-header">
+            <h1>Dashboard</h1>
+            <button class="btn btn-primary">View Reports</button>
+        </div>
+        <!-- Statistics Cards -->
+        <div class="row g-4 mb-4">
+            <div class="col-md-3">
+                <div class="card card-stat">
+                    <div class="card-body">
+                        <h5 class="card-title">Projects</h5>
+                        <h2 class="display-6">12</h2>
+                        <small class="text-muted">+3 from last month</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card card-stat bg-success text-white">
+                    <div class="card-body">
+                        <h5 class="card-title">Tickets</h5>
+                        <h2 class="display-6">45</h2>
+                        <small class="text-light">+10 from last week</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card card-stat bg-warning text-white">
+                    <div class="card-body">
+                        <h5 class="card-title">Users</h5>
+                        <h2 class="display-6">89</h2>
+                        <small class="text-dark">+5 new today</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card card-stat bg-danger text-white">
+                    <div class="card-body">
+                        <h5 class="card-title">Tasks</h5>
+                        <h2 class="display-6">23</h2>
+                        <small class="text-light">-2 completed</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Charts -->
+        <div class="row g-4 mb-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5>Project Status</h5>
+                        <canvas id="projectChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5>User Distribution</h5>
+                        <canvas id="userChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Activity Feed -->
+        <div class="row g-4 mb-4">
+            <div class="col-md-6">
+                <div class="card activity-feed">
+                    <div class="card-body">
+                        <h5 class="card-title mb-4">Recent Activity</h5>
+                        <div class="activity-item">
+                            <div class="activity-icon success">
+                                <i class="bi bi-check2"></i>
+                            </div>
+                            <div class="activity-content">
+                                <div class="time">10:00 AM</div>
+                                <div>Project "Website Redesign" marked as completed</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon warning">
+                                <i class="bi bi-exclamation-triangle"></i>
+                            </div>
+                            <div class="activity-content">
+                                <div class="time">9:30 AM</div>
+                                <div>Ticket #12345 reported a critical issue</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon danger">
+                                <i class="bi bi-x"></i>
+                            </div>
+                            <div class="activity-content">
+                                <div class="time">9:15 AM</div>
+                                <div>Failed login attempt detected</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon success">
+                                <i class="bi bi-person-plus"></i>
+                            </div>
+                            <div class="activity-content">
+                                <div class="time">9:00 AM</div>
+                                <div>New user "Sarah Johnson" added to the system</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Task List -->
+            <div class="col-md-6">
+                <div class="card task-list">
+                    <div class="card-body">
+                        <h5 class="card-title mb-4">To-Do List</h5>
+                        <div class="task-item">
+                            <div class="form-check task-checkbox">
+                                <input class="form-check-input" type="checkbox" value="" id="task1">
+                                <label class="form-check-label" for="task1"></label>
+                            </div>
+                            <div class="task-content">Review project requirements with client</div>
+                            <div class="task-actions">
+                                <button class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="task-item">
+                            <div class="form-check task-checkbox">
+                                <input class="form-check-input" type="checkbox" value="" id="task2">
+                                <label class="form-check-label" for="task2"></label>
+                            </div>
+                            <div class="task-content">Prepare presentation for project proposal</div>
+                            <div class="task-actions">
+                                <button class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="task-item">
+                            <div class="form-check task-checkbox">
+                                <input class="form-check-input" type="checkbox" value="" id="task3">
+                                <label class="form-check-label" for="task3"></label>
+                            </div>
+                            <div class="task-content">Schedule meeting with development team</div>
+                            <div class="task-actions">
+                                <button class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="task-item">
+                            <div class="form-check task-checkbox">
+                                <input class="form-check-input" type="checkbox" value="" id="task4">
+                                <label class="form-check-label" for="task4"></label>
+                            </div>
+                            <div class="task-content">Review and approve final design mockups</div>
+                            <div class="task-actions">
+                                <button class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="task-item">
+                            <div class="form-check task-checkbox">
+                                <input class="form-check-input" type="checkbox" value="" id="task5">
+                                <label class="form-check-label" for="task5"></label>
+                            </div>
+                            <div class="task-content">Prepare documentation for new feature</div>
+                            <div class="task-actions">
+                                <button class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Add new task...">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Calendar and Quick Access -->
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card calendar">
+                    <div class="card-body">
+                        <div class="calendar-header">
+                            <button class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-chevron-left"></i>
+                            </button>
+                            <h4>April 2023</h4>
+                            <button class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-chevron-right"></i>
+                            </button>
+                        </div>
+                        <div class="calendar-days">
+                            <div>Sun</div>
+                            <div>Mon</div>
+                            <div>Tue</div>
+                            <div>Wed</div>
+                            <div>Thu</div>
+                            <div>Fri</div>
+                            <div>Sat</div>
+                        </div>
+                        <div class="calendar-dates">
+                            <div class="date"></div>
+                            <div class="date"></div>
+                            <div class="date"></div>
+                            <div class="date"></div>
+                            <div class="date"></div>
+                            <div class="date">1</div>
+                            <div class="date">2</div>
+                            <div class="date">3</div>
+                            <div class="date">4</div>
+                            <div class="date">5</div>
+                            <div class="date">6</div>
+                            <div class="date">7</div>
+                            <div class="date">8</div>
+                            <div class="date">9</div>
+                            <div class="date">10</div>
+                            <div class="date">11</div>
+                            <div class="date">12</div>
+                            <div class="date">13</div>
+                            <div class="date">14</div>
+                            <div class="date">15</div>
+                            <div class="date">16</div>
+                            <div class="date">17</div>
+                            <div class="date">18</div>
+                            <div class="date">19</div>
+                            <div class="date">20</div>
+                            <div class="date">21</div>
+                            <div class="date">22</div>
+                            <div class="date">23</div>
+                            <div class="date">24</div>
+                            <div class="date">25</div>
+                            <div class="date">26</div>
+                            <div class="date">27</div>
+                            <div class="date">28</div>
+                            <div class="date">29</div>
+                            <div class="date">30</div>
+                            <div class="date"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card quick-access">
+                    <div class="card-body">
+                        <h5 class="card-title mb-4">Quick Access</h5>
+                        <div class="row g-3">
+                            <div class="col-md-3 col-6">
+                                <div class="quick-access-item">
+                                    <i class="bi bi-briefcase"></i>
+                                    <div>Projects</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6">
+                                <div class="quick-access-item">
+                                    <i class="bi bi-ticket-detailed"></i>
+                                    <div>Tickets</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6">
+                                <div class="quick-access-item">
+                                    <i class="bi bi-people"></i>
+                                    <div>Users</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6">
+                                <div class="quick-access-item">
+                                    <i class="bi bi-person-plus"></i>
+                                    <div>Add User</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6">
+                                <div class="quick-access-item">
+                                    <i class="bi bi-briefcase"></i>
+                                    <div>Add Service</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6">
+                                <div class="quick-access-item">
+                                    <i class="bi bi-newspaper"></i>
+                                    <div>Add Article</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6">
+                                <div class="quick-access-item">
+                                    <i class="bi bi-gear"></i>
+                                    <div>Settings</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6">
+                                <div class="quick-access-item">
+                                    <i class="bi bi-person-circle"></i>
+                                    <div>Profile</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="script/main.js"></script>
+    <script>
+        // Toggle sidebar for mobile
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+        }
+        // Toggle dark mode
+        function toggleDarkMode() {
+            document.body.setAttribute('data-theme', 
+                document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+            // Save preference in localStorage
+            if (document.body.getAttribute('data-theme') === 'dark') {
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        }
+        // Check for saved dark mode preference
+        document.addEventListener('DOMContentLoaded', function () {
+            const darkMode = localStorage.getItem('darkMode');
+            if (darkMode === 'enabled') {
+                document.body.setAttribute('data-theme', 'dark');
+                document.getElementById('darkModeToggle').checked = true;
+            }
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Project Chart
+        const projectCtx = document.getElementById('projectChart').getContext('2d');
+        const projectChart = new Chart(projectCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                datasets: [{
+                    label: 'Projects',
+                    data: [12, 19, 15, 25, 22],
+                    backgroundColor: 'rgba(42, 63, 84, 0.8)',
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: 'rgba(42, 63, 84, 0.9)',
+                        titleColor: '#ffffff',
+                        bodyColor: '#ffffff'
+                    }
+                }
+            }
+        });
+        // User Chart
+        const userCtx = document.getElementById('userChart').getContext('2d');
+        const userChart = new Chart(userCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Admins', 'Customers'],
+                datasets: [{
+                    label: 'User Distribution',
+                    data: [10, 90],
+                    backgroundColor: ['rgba(79, 195, 247, 0.9)', 'rgba(253, 216, 53, 0.9)'],
+                    borderColor: ['rgba(79, 195, 247, 1)', 'rgba(253, 216, 53, 1)'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    tooltip: {
+                        backgroundColor: 'rgba(42, 63, 84, 0.9)',
+                        titleColor: '#ffffff',
+                        bodyColor: '#ffffff'
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

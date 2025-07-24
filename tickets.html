@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BSafe Group - Tickets</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebar">
+       <div class="logo"><img src="logo/logo.png" alt="" width="60" height="60"></div>
+        <a href="index.html"><i class="bi bi-speedometer2"></i> Dashboard</a>
+        <a href="projects.html"><i class="bi bi-briefcase"></i> Projects</a>
+        <a href="tickets.html" class="active"><i class="bi bi-ticket-detailed"></i> Tickets</a>
+        <a href="users.html"><i class="bi bi-people"></i> Users</a>
+        <a href="add-user.html"><i class="bi bi-person-plus"></i> Add User</a>
+        <a href="add-service.html"><i class="bi bi-briefcase"></i> Add Service</a>
+        <a href="add-article.html"><i class="bi bi-newspaper"></i> Add Article</a>
+        <a href="user-settings.html"><i class="bi bi-gear"></i> Settings</a>
+    </nav>
+    <!-- Menu toggle for mobile -->
+    <div class="menu-toggle" onclick="toggleSidebar()">
+        <i class="bi bi-list"></i>
+    </div>
+    <!-- Content -->
+    <div class="content">
+        <!-- Top Navigation -->
+        <div class="top-nav">
+            <div style="position: relative; left: 30%;">Tickets</div>
+           <div class="user-info dropdown">
+                <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="https://via.placeholder.com/35" alt="User" class="rounded-circle">
+                    <span class="ms-2 d-none d-md-inline">John Doe</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                   
+                    <li><a class="dropdown-item" href="user-settings.html"><i class="bi bi-gear me-2"></i>Settings</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <button class="btn btn-outline-danger ms-3">
+                    <i class="bi bi-box-arrow-right"></i>
+                </button>
+                </ul>
+            </div>
+        </div>
+        <!-- Main Content -->
+        <div class="dashboard-header">
+            <h1>Tickets</h1>
+            <div class="d-flex gap-2">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTicketModal">Add Ticket</button>
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
+                    <input type="text" class="form-control search-input" placeholder="Search tickets" aria-label="Search" data-container="ticketList">
+                </div>
+            </div>
+        </div>
+        <!-- Tickets Grid -->
+        <div class="row g-4" id="ticketList">
+            <!-- Ticket Card 1 -->
+            <div class="col-md-4" data-search="login issue">
+                <div class="card ticket-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <h5>Login Issue</h5>
+                            <span class="badge badge-danger status-badge">Closed</span>
+                        </div>
+                        <div class="ticket-meta">Client: TechCorp</div>
+                        <div class="ticket-meta">Priority: High</div>
+                        <div class="ticket-meta">Created: 2023-03-25</div>
+                        <div class="ticket-content mt-2">
+                            User unable to log in to the dashboard. Error message: "Invalid credentials".
+                        </div>
+                        <div class="mt-3 d-flex justify-content-between">
+                            <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editTicketModal">Edit</button>
+                            <button class="btn btn-sm btn-outline-danger delete-btn" data-type="ticket" data-name="Login Issue">Delete</button>
+                            <button class="btn btn-sm btn-primary">View</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Ticket Card 2 -->
+            <div class="col-md-4" data-search="mobile app crash">
+                <div class="card ticket-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <h5>Mobile App Crash</h5>
+                            <span class="badge badge-info status-badge">In Progress</span>
+                        </div>
+                        <div class="ticket-meta">Client: HealthPlus</div>
+                        <div class="ticket-meta">Priority: Medium</div>
+                        <div class="ticket-meta">Created: 2023-03-28</div>
+                        <div class="ticket-content mt-2">
+                            App crashes when trying to access settings page on iOS devices.
+                        </div>
+                        <div class="mt-3 d-flex justify-content-between">
+                            <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editTicketModal">Edit</button>
+                            <button class="btn btn-sm btn-outline-danger delete-btn" data-type="ticket" data-name="Mobile App Crash">Delete</button>
+                            <button class="btn btn-sm btn-primary">View</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Ticket Card 3 -->
+            <div class="col-md-4" data-search="server error">
+                <div class="card ticket-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <h5>Server Error</h5>
+                            <span class="badge badge-warning status-badge">Open</span>
+                        </div>
+                        <div class="ticket-meta">Client: FinTech Solutions</div>
+                        <div class="ticket-meta">Priority: High</div>
+                        <div class="ticket-meta">Created: 2023-03-30</div>
+                        <div class="ticket-content mt-2">
+                            500 Internal Server Error when accessing API endpoints.
+                        </div>
+                        <div class="mt-3 d-flex justify-content-between">
+                            <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editTicketModal">Edit</button>
+                            <button class="btn btn-sm btn-outline-danger delete-btn" data-type="ticket" data-name="Server Error">Delete</button>
+                            <button class="btn btn-sm btn-primary">View</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Add Ticket Modal -->
+    <div class="modal fade" id="addTicketModal" tabindex="-1" aria-labelledby="addTicketModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addTicketModalLabel">Add New Ticket</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form class="needs-validation" novalidate>
+                    <div class="modal-body">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Ticket Title</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Client</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Priority</label>
+                                <select class="form-select" required>
+                                    <option value="">Select Priority</option>
+                                    <option value="high">High</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="low">Low</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Ticket Status</label>
+                                <select class="form-select ticket-status" required>
+                                    <option value="">Select Status</option>
+                                    <option value="resolved">Resolved</option>
+                                    <option value="in-progress">In Progress</option>
+                                    <option value="open">Open</option>
+                                    <option value="closed">Closed</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label">Description</label>
+                                <textarea class="form-control" rows="3" required></textarea>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Assigned To</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Due Date</label>
+                                <input type="date" class="form-control" required>
+                            </div>
+                            <!-- Image Upload Field -->
+                            <div class="col-md-12">
+                                <label class="form-label">Ticket Image</label>
+                                <input type="file" class="form-control" accept="image/*">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save Ticket</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Edit Ticket Modal -->
+    <div class="modal fade" id="editTicketModal" tabindex="-1" aria-labelledby="editTicketModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editTicketModalLabel">Edit Ticket</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form class="needs-validation" novalidate>
+                    <div class="modal-body">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Ticket Title</label>
+                                <input type="text" class="form-control" value="Login Issue" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Client</label>
+                                <input type="text" class="form-control" value="TechCorp" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Priority</label>
+                                <select class="form-select" required>
+                                    <option value="high" selected>High</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="low">Low</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Ticket Status</label>
+                                <select class="form-select ticket-status" required>
+                                    <option value="closed" selected>Closed</option>
+                                    <option value="resolved">Resolved</option>
+                                    <option value="in-progress">In Progress</option>
+                                    <option value="open">Open</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label">Description</label>
+                                <textarea class="form-control" rows="3" required>User unable to log in to the dashboard. Error message: "Invalid credentials".</textarea>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Assigned To</label>
+                                <input type="text" class="form-control" value="John Doe" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Due Date</label>
+                                <input type="date" class="form-control" value="2023-03-26" required>
+                            </div>
+                            <!-- Image Upload Field -->
+                            <div class="col-md-12">
+                                <label class="form-label">Ticket Image</label>
+                                <input type="file" class="form-control" accept="image/*">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Update Ticket</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Delete Confirmation Modal -->
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmDeleteModalLabel">Confirm Deletion</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this <span id="deleteType"></span>: <strong id="deleteName"></strong>?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="confirmDelete">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Success Toast -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+        <div id="deleteSuccessToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
+            <div class="toast-header">
+                <strong class="me-auto">Success</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Item deleted successfully!
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script/main.js"></script>
+    <script>
+         function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
