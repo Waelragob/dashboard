@@ -58,7 +58,7 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  background: #c8c8c8;
+  background: white;
   padding-top: 20px;
   color: #333333;
   overflow-y: auto;
@@ -125,20 +125,18 @@ body {
 .sidebar .logo {
   text-align: center;
   padding: 20px 10px;
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--white-color);
-  letter-spacing: 1px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  
+ 
+ 
   margin-bottom: 20px;
-  transition: var(--transition);
+
 }
 
 .sidebar a {
   padding: 15px 25px;
   text-decoration: none;
   display: block;
-  color: #333333;
+  color: #e65100;
   transition: var(--transition);
   border-radius: 4px;
   position: relative;
@@ -349,10 +347,8 @@ body {
   background-color: var(--card-bg);
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-}
+
+ 
 
 .card-header {
   background-color: transparent;
@@ -361,10 +357,7 @@ body {
   transition: var(--transition);
 }
 
-.card-body {
-  padding: 1.5rem;
-  transition: var(--transition);
-}
+
 
 .card-footer {
   background-color: transparent;
@@ -381,10 +374,7 @@ body {
   overflow: hidden;
 }
 
-.card-stat:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-}
+
 
 .card-stat .card-body {
   padding: 1.5rem;
@@ -428,7 +418,7 @@ body {
   border-radius: 10px;
   overflow: hidden;
   transition: var(--transition);
-  color: #FF6B35;
+  color: #8b9999;
 }
 
 .user-table thead {
@@ -471,18 +461,12 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.5px;
   transition: var(--transition);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+ 
 }
 
-.btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-}
 
-.btn-primary {
-  background-color: var(--primary-color);
-  border: none;
-}
+
+
 
 .btn-primary:hover {
   background-color: #e65100; /* Darker Orange */
@@ -840,7 +824,7 @@ body {
 
 /* Dark mode toggle styling */
 .dark-mode-toggle {
-  margin-left: 20px;
+  margin-left: 10px;
   display: flex;
   align-items: center;
 }
@@ -953,7 +937,7 @@ body {
 }
 
 .auth-card .card-header {
-  background-color: #c8c8c8;
+
   color: var(--white-color);
   padding: 2rem 1.5rem;
   text-align: center;
@@ -1104,5 +1088,26 @@ body {
 
   .auth-card .card-body {
     padding: 1.5rem 1rem;
+  }
+}
+.top-nav>div{
+  margin-left: 0px ;
+}
+@media(max-width:1200px)
+{
+  .top-nav>div{
+    margin-left: 40px;
+  }
+}
+@media(max-width:920px)
+{
+  .top-nav>div{
+    margin-left: 40px;
+  }
+}
+@media(max-width:768px)
+{
+  .top-nav>div{
+    margin-left: 40px;
   }
 }

@@ -29,17 +29,17 @@
     <div class="content">
         <!-- Top Navigation -->
         <div class="top-nav">
-            <div style="position: relative; left: 30%;">Add Article</div>
+            <div>Add Article</div>
            <div class="user-info dropdown">
                 <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="https://via.placeholder.com/35" alt="User" class="rounded-circle">
                     <span class="ms-2 d-none d-md-inline">John Doe</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
-                   
-                    <li><a class="dropdown-item" href="user-settings.html"><i class="bi bi-gear me-2"></i>Settings</a></li>
+                     <li><a class="dropdown-item" href="user-settings.html"><i class="bi bi-gear me-2"></i>Settings</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <button class="btn btn-outline-danger ms-3">
+                    <button class="btn btn mb-1 ">
+                        
                     <i class="bi bi-box-arrow-right"></i>
                 </button>
                 </ul>
@@ -55,30 +55,32 @@
         <div class="card">
             <div class="card-body">
                 <form id="addArticleForm">
+                   <div class="mb-3">
+    <label class="form-label">
+        Article Title <span class="text-danger">*</span>
+    </label>
+    <input type="text" class="form-control" required>
+</div>
                     <div class="mb-3">
-                        <label class="form-label">Article Title</label>
-                        <input type="text" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Article Content</label>
+                        <label class="form-label">Article Content <span class="text-danger">*</span></label>
                         <textarea class="form-control" id="articleContent" rows="10" required></textarea>
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-6">
-                            <label class="form-label">Category</label>
+                            <label class="form-label">Category <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" required>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label">Tags</label>
+                            <label class="form-label">Tags <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" placeholder="Comma separated tags" required>
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Article Image</label>
+                        <label class="form-label">Article Image <span class="text-danger">*</span></label>
                         <input type="file" class="form-control" accept="image/*" required>
                     </div>
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-primary">Publish Article</button>
+                        <button type="submit" class="btn btn-primary" > <span class="text-danger">*</span>Publish Article</button>
                     </div>
                 </form>
             </div>

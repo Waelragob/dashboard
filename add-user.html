@@ -29,7 +29,7 @@
     <div class="content">
         <!-- Top Navigation -->
         <div class="top-nav">
-            <div style="position: relative; left: 30%;">Add User</div>
+            <div >Add User</div>
              <div class="user-info dropdown">
                 <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="https://via.placeholder.com/35" alt="User" class="rounded-circle">
@@ -37,9 +37,10 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
                    
-                    <li><a class="dropdown-item" href="user-settings.html"><i class="bi bi-gear me-2"></i>Settings</a></li>
+                     <li><a class="dropdown-item" href="user-settings.html"><i class="bi bi-gear me-2"></i>Settings</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <button class="btn btn-outline-danger ms-3">
+                    <button class="btn btn mb-1 ">
+                        
                     <i class="bi bi-box-arrow-right"></i>
                 </button>
                 </ul>
@@ -57,29 +58,29 @@
                 <form id="addUserForm">
                     <div class="row mb-3">
                         <div class="col-md-6">
-                            <label class="form-label">First Name</label>
+                            <label class="form-label">First Name <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" required>
                         </div>
                          <div class="col-md-6">
-                            <label class="form-label">last Name</label>
+                            <label class="form-label">last Name <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" required>
                         </div>
                        
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Email address</label>
+                        <label class="form-label">Email address <span class="text-danger">*</span></label>
                         <input type="email" class="form-control" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Password</label>
+                        <label class="form-label">Password <span class="text-danger">*</span></label>
                         <input type="password" class="form-control" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Confirm Password</label>
+                        <label class="form-label">Confirm Password <span class="text-danger">*</span></label>
                         <input type="password" class="form-control" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Role</label>
+                        <label class="form-label">Role <span class="text-danger">*</span></label>
                         <select class="form-select" required>
                             <option value="">Select Role</option>
                             <option value="admin">Admin</option>
@@ -87,7 +88,7 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Status</label>
+                        <label class="form-label">Status <span class="text-danger">*</span></label>
                         <select class="form-select" required>
                             <option value="active">Active</option>
                             <option value="pending">Pending</option>

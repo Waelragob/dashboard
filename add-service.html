@@ -29,7 +29,7 @@
     <div class="content">
         <!-- Top Navigation -->
         <div class="top-nav">
-            <div style="position: relative; left: 30%;">Add Service</div>
+            <div >Add Service</div>
             <div class="user-info dropdown">
                 <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="https://via.placeholder.com/35" alt="User" class="rounded-circle">
@@ -37,9 +37,10 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
                    
-                    <li><a class="dropdown-item" href="user-settings.html"><i class="bi bi-gear me-2"></i>Settings</a></li>
+                     <li><a class="dropdown-item" href="user-settings.html"><i class="bi bi-gear me-2"></i>Settings</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <button class="btn btn-outline-danger ms-3">
+                    <button class="btn btn mb-1 ">
+                        
                     <i class="bi bi-box-arrow-right"></i>
                 </button>
                 </ul>
@@ -56,33 +57,33 @@
             <div class="card-body">
                 <form id="addServiceForm">
                     <div class="mb-3">
-                        <label class="form-label">Service Name</label>
+                        <label class="form-label">Service Name <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Service Description</label>
+                        <label class="form-label">Service Description <span class="text-danger">*</span></label>
                         <textarea class="form-control" rows="5" required></textarea>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Service Category</label>
+                        <label class="form-label">Service Category <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" required>
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-6">
-                            <label class="form-label">Price</label>
+                            <label class="form-label">Price <span class="text-danger">*</span></label>
                             <input type="number" class="form-control" required>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label">Duration (in days)</label>
+                            <label class="form-label">Duration (in days) <span class="text-danger">*</span></label>
                             <input type="number" class="form-control" required>
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Service Image</label>
+                        <label class="form-label">Service Image <span class="text-danger">*</span></label>
                         <input type="file" class="form-control" accept="image/*" required>
                     </div>
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-primary">Add Service</button>
+                        <button type="submit" class="btn btn-primary">Add Service <span class="text-danger">*</span></button>
                     </div>
                 </form>
             </div>
