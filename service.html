@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BSafe Group - Services</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <style>
+        /* إعدادات إضافية للresponsiveness */
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+        .user-info img {
+            margin-right: 10px;
+        }
+        .user-table th, .user-table td {
+            white-space: nowrap;
+        }
+        @media (max-width: 991.98px) {
+            .content {
+                margin-left: 0;
+            }
+            .dashboard-header .btn {
+                margin-top: 10px;
+            }
+        }
+        @media (max-width: 767.98px) {
+            .table-responsive {
+                font-size: 0.875rem;
+            }
+            .table-responsive .btn {
+                padding: 0.25rem 0.5rem;
+                font-size: 0.75rem;
+            }
+            .user-info {
+                margin-top: 10px;
+            }
+        }
+        @media (max-width: 575.98px) {
+            .content {
+                padding: 10px;
+            }
+            .card-body {
+                padding: 10px;
+            }
+            .table-responsive {
+                font-size: 0.75rem;
+            }
+            .table-responsive .btn {
+                padding: 0.2rem 0.4rem;
+                font-size: 0.65rem;
+            }
+        }
+        /* تحسين مظهر نماذج التعديل والحذف */
+        .modal-dialog {
+            max-width: 800px;
+        }
+        .modal-content {
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+        .modal-header {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .modal-footer {
+            background-color: #f8f9fa;
+            border-top: 1px solid #dee2e6;
+        }
+        /* تحسين مظهر البطاقات */
+        .service-card {
+            transition: all 0.3s ease;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            height: 100%;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+        .category-badge {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+        }
+        .badge-info {
+            background-color: #e3f2fd;
+            color: #0d47a1;
+        }
+        .badge-success {
+            background-color: #e8f5e9;
+            color: #1b5e20;
+        }
+        .badge-warning {
+            background-color: #fff8e1;
+            color: #e65100;
+        }
+        .service-meta {
+           
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+        }
+        /* تحسين أزرار الإجراءات */
+        .btn-outline-primary, .btn-outline-danger {
+            transition: all 0.2s ease;
+        }
+        .btn-outline-primary:hover {
+            background-color: #0d6efd;
+            color: white;
+            border-color: #0d6efd;
+        }
+        .btn-outline-danger:hover {
+            background-color: #dc3545;
+            color: white;
+            border-color: #dc3545;
+        }
+        /* تحسين مظهر نموذج التأكيد */
+        #confirmDeleteModal .modal-content {
+            border-left: 4px solid #dc3545;
+        }
+       
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebar">
+        <div class="logo"><img src="logo/logo.png" alt="" width="170" height="170" class="img-fluid"></div>
+        <a href="index.html"><i class="bi bi-speedometer2"></i> Dashboard</a>
+        <a href="projects.html"><i class="bi bi-briefcase"></i> Projects</a>
+        <a href="tickets.html"><i class="bi bi-ticket-detailed"></i> Tickets</a>
+        <a href="users.html"><i class="bi bi-people"></i> Users</a>
+        <a href="add-user.html"><i class="bi bi-person-plus"></i> Add User</a>
+        <a href="services.html" class="active"><i class="bi bi-briefcase"></i> Services</a>
+        <a href="add-service.html"><i class="bi bi-plus-circle"></i> Add Service</a>
+        <a href="add-article.html"><i class="bi bi-newspaper"></i> Add Article</a>
+        <a href="user-settings.html"><i class="bi bi-gear"></i> Settings</a>
+    </nav>
+    <!-- Menu toggle for mobile -->
+    <div class="menu-toggle" onclick="toggleSidebar()">
+        <i class="bi bi-list"></i>
+    </div>
+    <!-- Content -->
+    <div class="content">
+        <!-- Top Navigation -->
+        <div class="top-nav">
+            <div>Services</div>
+            <div class="user-info dropdown">
+                <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="https://via.placeholder.com/35" alt="User" class="rounded-circle">
+                    <span class="ms-2 d-none d-md-inline">John Doe</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-start p-3" style="min-width: 200px;">
+                    <!-- إعدادات المستخدم -->
+                    <li>
+                        <a class="dropdown-item d-flex align-items-center py-2" href="user-settings.html">
+                            <i class="bi bi-gear fs-5 me-2"></i>
+                            <span class="fw-medium">setting</span>
+                        </a>
+                    </li>
+                    <!-- فاصل -->
+                    <li><hr class="dropdown-divider my-1"></li>
+                    <!-- زر الخروج -->
+                    <li>
+                        <a class="dropdown-item d-flex align-items-center py-2 text-danger" href="#">
+                            <i class="bi bi-box-arrow-right fs-5 me-2"></i>
+                            <span class="fw-medium"> logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Main Content -->
+        <div class="dashboard-header">
+            <h1>Services</h1>
+            <div class="d-flex justify-content-between align-items-center w-100 flex-wrap gap-2">
+                <div class="d-flex ms-auto gap-2 w-100 w-md-auto">
+                    <div class="input-group flex-grow-1">
+                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
+                        <input type="text" class="form-control search-input" placeholder="Search services" aria-label="Search" data-container="serviceList">
+                    </div>
+                    <a href="add-service.html">
+                    <button class="btn btn-sm btn-primary mt-2 mt-md-0">
+                        <i class="bi bi-plus-circle me-1"></i> Add Service
+                    </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Services Grid -->
+        <div class="row g-4 justify-content-center" id="serviceList">
+            <!-- Service Card 1 -->
+            <div class="col-12 col-md-6 col-lg-4" data-search="website design" data-service-id="1">
+                <div class="card service-card h-100">
+                    <img src="https://via.placeholder.com/300x150" class="card-img-top" alt="Website Design" style="height: 150px; object-fit: cover;">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="h6 card-title">Website Design</h5>
+                        <span class="badge bg-primary category-badge mb-2">Web Development</span>
+                        <p class="card-text " style="flex-grow: 1; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                            Professional website design services with responsive layout and modern UI/UX.
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center mt-2">
+                            <span class="fw-bold">$500</span>
+                            <span class="text-muted">Duration: 10 days</span>
+                        </div>
+                        <div class="mt-3 d-flex flex-wrap gap-2">
+                            <button class="btn btn-sm btn-outline-primary edit-btn flex-fill w-100 w-md-auto" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#editServiceModal"
+                                    data-service-id="1"
+                                    data-service-name="Website Design"
+                                    data-description="Professional website design services with responsive layout and modern UI/UX."
+                                    data-category="web-development"
+                                    data-price="500"
+                                    data-duration="10"
+                                    data-image="https://via.placeholder.com/300x150">
+                                Edit
+                            </button>
+                            <button class="btn btn-sm btn-outline-danger delete-btn flex-fill w-100 w-md-auto" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#confirmDeleteModal" 
+                                    data-name="Website Design"
+                                    data-type="service">
+                                Delete
+                            </button>
+                            <button class="btn btn-sm btn-primary flex-fill w-100 w-md-auto">View</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Service Card 2 -->
+            <div class="col-12 col-md-6 col-lg-4" data-search="mobile app development" data-service-id="2">
+                <div class="card service-card h-100">
+                    <img src="https://via.placeholder.com/300x150" class="card-img-top" alt="Mobile App Development" style="height: 150px; object-fit: cover;">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="h6 card-title">Mobile App Development</h5>
+                        <span class="badge bg-success category-badge mb-2">Mobile Apps</span>
+                        <p class="card-text" style="flex-grow: 1; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                            Development of mobile applications for iOS and Android platforms with modern features.
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center mt-2">
+                            <span class="fw-bold">$1200</span>
+                            <span class="text-muted">Duration: 30 days</span>
+                        </div>
+                        <div class="mt-3 d-flex flex-wrap gap-2">
+                            <button class="btn btn-sm btn-outline-primary edit-btn flex-fill w-100 w-md-auto" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#editServiceModal"
+                                    data-service-id="2"
+                                    data-service-name="Mobile App Development"
+                                    data-description="Development of mobile applications for iOS and Android platforms with modern features."
+                                    data-category="mobile-apps"
+                                    data-price="1200"
+                                    data-duration="30"
+                                    data-image="https://via.placeholder.com/300x150">
+                                Edit
+                            </button>
+                            <button class="btn btn-sm btn-outline-danger delete-btn flex-fill w-100 w-md-auto" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#confirmDeleteModal" 
+                                    data-name="Mobile App Development"
+                                    data-type="service">
+                                Delete
+                            </button>
+                            <button class="btn btn-sm btn-primary flex-fill w-100 w-md-auto">View</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Service Card 3 -->
+            <div class="col-12 col-md-6 col-lg-4" data-search="graphic design" data-service-id="3">
+                <div class="card service-card h-100">
+                    <img src="https://via.placeholder.com/300x150" class="card-img-top" alt="Graphic Design" style="height: 150px; object-fit: cover;">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="h6 card-title">Graphic Design</h5>
+                        <span class="badge bg-warning category-badge mb-2">Graphic Design</span>
+                        <p class="card-text" style="flex-grow: 1; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                            Professional graphic design services for logos, brochures, and marketing materials.
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center mt-2">
+                            <span class="fw-bold">$300</span>
+                            <span >Duration: 5 days</span>
+                        </div>
+                        <div class="mt-3 d-flex flex-wrap gap-2">
+                            <button class="btn btn-sm btn-outline-primary edit-btn flex-fill w-100 w-md-auto" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#editServiceModal"
+                                    data-service-id="3"
+                                    data-service-name="Graphic Design"
+                                    data-description="Professional graphic design services for logos, brochures, and marketing materials."
+                                    data-category="graphic-design"
+                                    data-price="300"
+                                    data-duration="5"
+                                    data-image="https://via.placeholder.com/300x150">
+                                Edit
+                            </button>
+                            <button class="btn btn-sm btn-outline-danger delete-btn flex-fill w-100 w-md-auto" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#confirmDeleteModal" 
+                                    data-name="Graphic Design"
+                                    data-type="service">
+                                Delete
+                            </button>
+                            <button class="btn btn-sm btn-primary flex-fill w-100 w-md-auto">View</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="editServiceModal" tabindex="-1" aria-labelledby="editServiceModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editServiceModalLabel">Edit Service</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form class="needs-validation" novalidate>
+                    <div class="modal-body">
+                        <div class="row g-3">
+                            <div class="col-12 col-md-6">
+                                <label class="form-label">Service Name</label>
+                                <input type="text" class="form-control" id="editServiceName" value="" required>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label">Category</label>
+                                <select class="form-select" id="editCategory" required>
+                                    <option value="web-development">Web Development</option>
+                                    <option value="mobile-apps">Mobile Apps</option>
+                                    <option value="graphic-design">Graphic Design</option>
+                                    <option value="consulting">Consulting</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Description</label>
+                                <textarea class="form-control" id="editDescription" rows="3" required></textarea>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label">Price</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">$</span>
+                                    <input type="number" class="form-control" id="editPrice" min="0" step="0.01" value="" required>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label">Duration (days)</label>
+                                <input type="number" class="form-control" id="editDuration" min="1" value="" required>
+                            </div>
+                            <!-- Image Upload Field -->
+                            <div class="col-12">
+                                <label class="form-label">Service Image</label>
+                                <input type="file" class="form-control" accept="image/*">
+                                <div class="form-text">Leave blank to keep current image</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Update Service</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Delete Confirmation Modal -->
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmDeleteModalLabel">Confirm Deletion</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this <span id="deleteType">service</span>: <strong id="deleteName"></strong>?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="confirmDelete">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Success Toast -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+        <div id="deleteSuccessToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
+            <div class="toast-header">
+                <strong class="me-auto">Success</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Service deleted successfully!
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script/main.js"></script>
+   <script>
+    // تأكد من تنفيذ الكود بعد تحميل الصفحة بالكامل
+    document.addEventListener('DOMContentLoaded', function() {
+        // تحقق من تحميل Bootstrap
+        if (typeof bootstrap === 'undefined') {
+            console.error('Bootstrap غير محملة. تأكد من تحميل مكتبة Bootstrap قبل هذا السكربت.');
+            return;
+        }
+        
+        // تعبئة نموذج التعديل عند النقر على زر التعديل
+        document.querySelectorAll('.edit-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const serviceId = this.getAttribute('data-service-id');
+                const serviceName = this.getAttribute('data-service-name');
+                const description = this.getAttribute('data-description');
+                const category = this.getAttribute('data-category');
+                const price = this.getAttribute('data-price');
+                const duration = this.getAttribute('data-duration');
+                
+                document.getElementById('editServiceName').value = serviceName;
+                document.getElementById('editDescription').value = description;
+                document.getElementById('editCategory').value = category;
+                document.getElementById('editPrice').value = price;
+                document.getElementById('editDuration').value = duration;
+            });
+        });
+        
+        // تحقق من وجود عناصر الحذف
+        const deleteButtons = document.querySelectorAll('.delete-btn');
+        const confirmDeleteBtn = document.getElementById('confirmDelete');
+        const deleteNameElement = document.getElementById('deleteName');
+        const deleteTypeElement = document.getElementById('deleteType');
+        
+        // إذا تم العثور على جميع العناصر المطلوبة
+        if (deleteButtons.length > 0 && confirmDeleteBtn && deleteNameElement && deleteTypeElement) {
+            // معالجة أزرار الحذف
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // استخراج البيانات من السمات
+                    const itemName = this.getAttribute('data-name') || 'الخدمة';
+                    const itemType = this.getAttribute('data-type') || 'الخدمة';
+                    
+                    // تحديث النص في نموذج التأكيد
+                    deleteNameElement.textContent = itemName;
+                    deleteTypeElement.textContent = itemType;
+                });
+            });
+            
+            // معالجة الحذف الفعلي
+            confirmDeleteBtn.addEventListener('click', function() {
+                // إغلاق نموذج التأكيد
+                const modalElement = document.getElementById('confirmDeleteModal');
+                const modal = bootstrap.Modal.getInstance(modalElement);
+                if (modal) {
+                    modal.hide();
+                }
+                
+                // يمكنك هنا إضافة الكود الذي يقوم بحذف العنصر
+                // إظهار رسالة نجاح (اختياري)
+                const toastElement = document.getElementById('deleteSuccessToast');
+                if (toastElement) {
+                    const toast = new bootstrap.Toast(toastElement);
+                    toast.show();
+                }
+            });
+        } else {
+            console.error('خطأ: لا يمكن تهيئة وظيفة الحذف. تأكد من وجود جميع العناصر الضرورية في الصفحة.');
+        }
+    });
+</script>
+</body>
+</html>
