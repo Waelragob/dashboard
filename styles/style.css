@@ -146,7 +146,7 @@ body {
 .sidebar a:hover,
 .sidebar a.active {
   background-color: rgba(255, 255, 255, 0.1);
-  transform: translateX(5px);
+  /* transform: translateX(5px); */
   z-index: 2;
 }
 
@@ -166,7 +166,15 @@ body {
   letter-spacing: 1px;
   margin-top: 20px;
   transition: var(--transition);
+ 
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
 }
+
 
 /* Mobile sidebar */
 @media (max-width: 992px) {
@@ -216,7 +224,7 @@ body {
 
 /* Top navigation */
 .top-nav {
-  height: 60px;
+  height: 56px;
   background-color: var(--card-bg);
   border-bottom: 1px solid var(--border-color);
   display: flex;
@@ -229,6 +237,32 @@ body {
   z-index: 900;
   transition: var(--transition);
 }
+.dropdown-menu {
+    z-index: 1050 !important;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+.dropdown-item {
+            transition: all 0.2s ease;
+        }
+        
+        .dropdown-item:hover {
+            background-color: #f8f9fa;
+            transform: translateX(2px);
+        }
+        
+        /* تحسين استجابة القائمة على الشاشات الصغيرة */
+        @media (max-width: 767.98px) {
+            .top-nav {
+                padding: 10px 15px;
+            }
+            
+            .user-info {
+                position: absolute;
+                right: 15px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
 
 .top-nav .user-info {
   display: flex;
@@ -581,6 +615,7 @@ body {
   color: var(--primary-color);
   margin: 0;
   transition: var(--transition);
+  margin-right:10px ;
 }
 
 /* Status badges */
@@ -1113,3 +1148,61 @@ body {
   }
 }
 
+       
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-info img {
+            margin-right: 10px;
+        }
+
+        .user-table th, .user-table td {
+            white-space: nowrap;
+        }
+
+        @media (max-width: 991.98px) {
+            .content {
+                margin-left: 0;
+            }
+
+            .dashboard-header .btn {
+                margin-top: 10px;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .table-responsive {
+                font-size: 0.875rem;
+            }
+
+            .table-responsive .btn {
+                padding: 0.25rem 0.5rem;
+                font-size: 0.75rem;
+            }
+
+            .user-info {
+                margin-top: 10px;
+            }
+        }
+
+        @media (max-width: 575.98px) {
+            .content {
+                padding: 10px;
+            }
+
+            .card-body {
+                padding: 10px;
+            }
+
+            .table-responsive {
+                font-size: 0.75rem;
+            }
+
+            .table-responsive .btn {
+                padding: 0.2rem 0.4rem;
+                font-size: 0.65rem;
+            }
+        }
+    

@@ -11,7 +11,7 @@
 <body>
     <!-- Sidebar -->
     <nav class="sidebar" id="sidebar">
-        <div class="logo"><img src="logo/logo.png" alt="" width="170" height="170"></div>
+        <div class="logo"> <a href="index.html"><img src="logo/logo.png" alt="" width="170" height="170"></a></div>
         <a href="index.html"><i class="bi bi-speedometer2"></i> Dashboard</a>
         <a href="users.html"><i class="bi bi-people"></i> Users</a>
         <a href="add-user.html"><i class="bi bi-person-plus"></i> Add User</a>
@@ -35,14 +35,29 @@
                     <img src="https://via.placeholder.com/35" alt="User" class="rounded-circle">
                     <span class="ms-2 d-none d-md-inline">John Doe</span>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-end">
-                     <li><a class="dropdown-item" href="user-settings.html"><i class="bi bi-gear me-2"></i>Settings</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <button class="btn btn mb-1 ">
-                        
-                    <i class="bi bi-box-arrow-right"></i>
-                </button>
-                </ul>
+                   <ul class="dropdown-menu dropdown-menu-start p-3" style="min-width: 200px;">
+  <!-- إعدادات المستخدم -->
+  <li>
+    <a class="dropdown-item d-flex align-items-center py-2" href="user-settings.html">
+      <i class="bi bi-gear fs-5 me-2"></i>
+      <span class="fw-medium">setting</span>
+    </a>
+  </li>
+  
+  <!-- فاصل -->
+  <li><hr class="dropdown-divider my-1"></li>
+  
+  <!-- زر الخروج -->
+  <li>
+    <a class="dropdown-item d-flex align-items-center py-2 text-danger" href="#">
+      <i class="bi bi-box-arrow-right fs-5 me-2"></i>
+      <span class="fw-medium"> logout</span>
+    </a>
+  </li>
+  
+  
+  
+</ul>
             </div>
         </div>
 

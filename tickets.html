@@ -11,7 +11,7 @@
 <body>
     <!-- Sidebar -->
     <nav class="sidebar" id="sidebar">
-       <div class="logo"><img src="logo/logo.png" alt="" width="170" height="170" class="img-fluid"></div>
+       <div class="logo"><a href="index.html"><img src="logo/logo.png" alt="" width="170" height="170"></a></div>
         <a href="index.html"><i class="bi bi-speedometer2"></i> Dashboard</a>
         <a href="projects.html"><i class="bi bi-briefcase"></i> Projects</a>
         <a href="tickets.html" class="active"><i class="bi bi-ticket-detailed"></i> Tickets</a>
@@ -35,25 +35,36 @@
                     <img src="https://via.placeholder.com/35" alt="User" class="rounded-circle">
                     <span class="ms-2 d-none d-md-inline">John Doe</span>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="user-settings.html"><i class="bi bi-gear me-2"></i>Settings</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <button class="btn btn mb-1 ">
-                    <i class="bi bi-box-arrow-right"></i>
-                </button>
-                </ul>
+                    <ul class="dropdown-menu dropdown-menu-start p-3" style="min-width: 200px;">
+  <!-- إعدادات المستخدم -->
+  <li>
+    <a class="dropdown-item d-flex align-items-center py-2" href="user-settings.html">
+      <i class="bi bi-gear fs-5 me-2"></i>
+      <span class="fw-medium">setting</span>
+    </a>
+  </li>
+  <!-- فاصل -->
+  <li><hr class="dropdown-divider my-1"></li>
+  <!-- زر الخروج -->
+  <li>
+    <a class="dropdown-item d-flex align-items-center py-2 text-danger" href="#">
+      <i class="bi bi-box-arrow-right fs-5 me-2"></i>
+      <span class="fw-medium"> logout</span>
+    </a>
+  </li>
+</ul>
             </div>
         </div>
         <!-- Main Content -->
         <div class="dashboard-header">
             <h1>Tickets</h1>
             <div class="d-flex justify-content-between align-items-center w-100 flex-wrap gap-2">
-                <div class="d-flex ms-auto gap-2">
-                    <div class="input-group">
+                <div class="d-flex ms-auto gap-2 w-100 w-md-auto">
+                    <div class="input-group flex-grow-1">
                         <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
                         <input type="text" class="form-control search-input" placeholder="Search tickets" aria-label="Search" data-container="ticketList">
                     </div>
-                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#addTicketModal">
+                    <button class="btn btn-sm btn-primary mt-2 mt-md-0" data-bs-toggle="modal" data-bs-target="#addTicketModal">
                         <i class="bi bi-plus-circle me-1"></i> Add
                     </button>
                 </div>
@@ -62,7 +73,7 @@
         <!-- Tickets Grid -->
         <div class="row g-4 justify-content-center" id="ticketList">
             <!-- Ticket Card 1 -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3" data-search="login issue">
+            <div class="col-12 col-md-6 col-lg-4" data-search="login issue">
                 <div class="card ticket-card h-100">
                     <div class="card-body d-flex flex-column">
                         <div class="d-flex justify-content-between align-items-start">
@@ -76,15 +87,32 @@
                             User unable to log in to the dashboard. Error message: "Invalid credentials".
                         </div>
                         <div class="mt-3 d-flex flex-wrap gap-2">
-                            <button class="btn btn-sm btn-outline-primary flex-fill" data-bs-toggle="modal" data-bs-target="#editTicketModal">Edit</button>
-                            <button class="btn btn-sm btn-outline-danger delete-btn flex-fill" data-type="ticket" data-name="Login Issue">Delete</button>
-                            <button class="btn btn-sm btn-primary flex-fill">View</button>
+                           <button class="btn btn-sm btn-outline-primary edit-btn flex-fill w-100 w-md-auto" 
+        data-bs-toggle="modal" 
+        data-bs-target="#editTicketModal"
+        data-ticket-id="1"
+        data-ticket-title="Login Issue"
+        data-client="TechCorp"
+        data-priority="high"
+        data-status="closed"
+        data-description="User unable to log in to the dashboard. Error message: &quot;Invalid credentials&quot;."
+        data-assigned-to="John Doe"
+        data-due-date="2023-03-26">
+    Edit
+</button>
+                     <button class="btn btn-sm btn-outline-danger delete-btn flex-fill w-100 w-md-auto" 
+                                            data-bs-toggle="modal" 
+                                            data-bs-target="#confirmDeleteModal" 
+                                            data-name="">
+                                        Delete
+                                    </button>
+                            <button class="btn btn-sm btn-primary flex-fill w-100 w-md-auto">View</button>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- Ticket Card 2 -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3" data-search="mobile app crash">
+            <div class="col-12 col-md-6 col-lg-4" data-search="mobile app crash">
                 <div class="card ticket-card h-100">
                     <div class="card-body d-flex flex-column">
                         <div class="d-flex justify-content-between align-items-start">
@@ -98,15 +126,32 @@
                             App crashes when trying to access settings page on iOS devices.
                         </div>
                         <div class="mt-3 d-flex flex-wrap gap-2">
-                            <button class="btn btn-sm btn-outline-primary flex-fill" data-bs-toggle="modal" data-bs-target="#editTicketModal">Edit</button>
-                            <button class="btn btn-sm btn-outline-danger delete-btn flex-fill" data-type="ticket" data-name="Mobile App Crash">Delete</button>
-                            <button class="btn btn-sm btn-primary flex-fill">View</button>
+                          <button class="btn btn-sm btn-outline-primary edit-btn flex-fill w-100 w-md-auto" 
+        data-bs-toggle="modal" 
+        data-bs-target="#editTicketModal"
+        data-ticket-id="1"
+        data-ticket-title="Login Issue"
+        data-client="TechCorp"
+        data-priority="high"
+        data-status="closed"
+        data-description="User unable to log in to the dashboard. Error message: &quot;Invalid credentials&quot;."
+        data-assigned-to="John Doe"
+        data-due-date="2023-03-26">
+    Edit
+</button>
+  <button class="btn btn-sm btn-outline-danger delete-btn flex-fill w-100 w-md-auto" 
+                                            data-bs-toggle="modal" 
+                                            data-bs-target="#confirmDeleteModal" 
+                                            data-name="">
+                                        Delete
+                                    </button>
+                            <button class="btn btn-sm btn-primary flex-fill w-100 w-md-auto">View</button>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- Ticket Card 3 -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3" data-search="server error">
+            <div class="col-12 col-md-6 col-lg-4" data-search="server error">
                 <div class="card ticket-card h-100">
                     <div class="card-body d-flex flex-column">
                         <div class="d-flex justify-content-between align-items-start">
@@ -120,9 +165,26 @@
                             500 Internal Server Error when accessing API endpoints.
                         </div>
                         <div class="mt-3 d-flex flex-wrap gap-2">
-                            <button class="btn btn-sm btn-outline-primary flex-fill" data-bs-toggle="modal" data-bs-target="#editTicketModal">Edit</button>
-                            <button class="btn btn-sm btn-outline-danger delete-btn flex-fill" data-type="ticket" data-name="Server Error">Delete</button>
-                            <button class="btn btn-sm btn-primary flex-fill">View</button>
+                           <button class="btn btn-sm btn-outline-primary edit-btn flex-fill w-100 w-md-auto" 
+        data-bs-toggle="modal" 
+        data-bs-target="#editTicketModal"
+        data-ticket-id="1"
+        data-ticket-title="Login Issue"
+        data-client="TechCorp"
+        data-priority="high"
+        data-status="closed"
+        data-description="User unable to log in to the dashboard. Error message: &quot;Invalid credentials&quot;."
+        data-assigned-to="John Doe"
+        data-due-date="2023-03-26">
+    Edit
+</button>
+  <button class="btn btn-sm btn-outline-danger delete-btn flex-fill w-100 w-md-auto" 
+                                            data-bs-toggle="modal" 
+                                            data-bs-target="#confirmDeleteModal" 
+                                            data-name="">
+                                        Delete
+                                    </button>
+                            <button class="btn btn-sm btn-primary flex-fill w-100 w-md-auto">View</button>
                         </div>
                     </div>
                 </div>
@@ -294,5 +356,59 @@
             document.getElementById('sidebar').classList.toggle('active');
         }
     </script>
+     <script>
+    // تأكد من تنفيذ الكود بعد تحميل الصفحة بالكامل
+    document.addEventListener('DOMContentLoaded', function() {
+        // تحقق من تحميل Bootstrap
+        if (typeof bootstrap === 'undefined') {
+            console.error('Bootstrap غير محملة. تأكد من تحميل مكتبة Bootstrap قبل هذا السكربت.');
+            return;
+        }
+        
+        // تحقق من وجود عناصر الحذف
+        const deleteButtons = document.querySelectorAll('.delete-btn');
+        const confirmDeleteBtn = document.getElementById('confirmDelete');
+        const deleteNameElement = document.getElementById('deleteName');
+        const deleteTypeElement = document.getElementById('deleteType');
+        
+        // إذا تم العثور على جميع العناصر المطلوبة
+        if (deleteButtons.length > 0 && confirmDeleteBtn && deleteNameElement && deleteTypeElement) {
+            // معالجة أزرار الحذف
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // استخراج البيانات من السمات
+                    const itemName = this.getAttribute('data-name') || 'العنصر';
+                    const itemType = this.getAttribute('data-type') || 'العنصر';
+                    
+                    // تحديث النص في نموذج التأكيد
+                    deleteNameElement.textContent = itemName;
+                    deleteTypeElement.textContent = itemType;
+                });
+            });
+            
+            // معالجة الحذف الفعلي
+            confirmDeleteBtn.addEventListener('click', function() {
+                // إغلاق نموذج التأكيد
+                const modalElement = document.getElementById('confirmDeleteModal');
+                const modal = bootstrap.Modal.getInstance(modalElement);
+                if (modal) {
+                    modal.hide();
+                }
+                
+                // يمكنك هنا إضافة الكود الذي يقوم بحذف العنصر
+                
+                // إظهار رسالة نجاح (اختياري)
+                const toastElement = document.getElementById('deleteSuccessToast');
+                if (toastElement) {
+                    const toast = new bootstrap.Toast(toastElement);
+                    toast.show();
+                }
+            });
+        } else {
+            console.error('خطأ: لا يمكن تهيئة وظيفة الحذف. تأكد من وجود جميع العناصر الضرورية في الصفحة.');
+        }
+    });
+</script>
+   
 </body>
 </html>

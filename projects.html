@@ -7,11 +7,152 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <style>
+        /* إعدادات إضافية للresponsiveness */
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-info img {
+            margin-right: 10px;
+        }
+
+        .user-table th, .user-table td {
+            white-space: nowrap;
+        }
+
+        @media (max-width: 991.98px) {
+            .content {
+                margin-left: 0;
+            }
+
+            .dashboard-header .btn {
+                margin-top: 10px;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .table-responsive {
+                font-size: 0.875rem;
+            }
+
+            .table-responsive .btn {
+                padding: 0.25rem 0.5rem;
+                font-size: 0.75rem;
+            }
+
+            .user-info {
+                margin-top: 10px;
+            }
+        }
+
+        @media (max-width: 575.98px) {
+            .content {
+                padding: 10px;
+            }
+
+            .card-body {
+                padding: 10px;
+            }
+
+            .table-responsive {
+                font-size: 0.75rem;
+            }
+
+            .table-responsive .btn {
+                padding: 0.2rem 0.4rem;
+                font-size: 0.65rem;
+            }
+        }
+
+        /* تحسين مظهر نماذج التعديل والحذف */
+        .modal-dialog {
+            max-width: 800px;
+        }
+
+        .modal-content {
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .modal-header {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .modal-footer {
+            background-color: #f8f9fa;
+            border-top: 1px solid #dee2e6;
+        }
+
+        /* تحسين مظهر البطاقات */
+        .project-card {
+            transition: all 0.3s ease;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            height: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .status-badge {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+        }
+
+        .badge-info {
+            background-color: #e3f2fd;
+            color: #0d47a1;
+        }
+
+        .badge-success {
+            background-color: #e8f5e9;
+            color: #1b5e20;
+        }
+
+        .badge-warning {
+            background-color: #fff8e1;
+            color: #e65100;
+        }
+
+        .project-meta {
+            color: #6c757d;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+        }
+
+        /* تحسين أزرار الإجراءات */
+        .btn-outline-primary, .btn-outline-danger {
+            transition: all 0.2s ease;
+        }
+
+        .btn-outline-primary:hover {
+            background-color: #0d6efd;
+            color: white;
+            border-color: #0d6efd;
+        }
+
+        .btn-outline-danger:hover {
+            background-color: #dc3545;
+            color: white;
+            border-color: #dc3545;
+        }
+
+        /* تحسين مظهر نموذج التأكيد */
+        #confirmDeleteModal .modal-content {
+            border-left: 4px solid #dc3545;
+        }
+    </style>
 </head>
 <body>
     <!-- Sidebar -->
     <nav class="sidebar" id="sidebar">
-       <div class="logo"><img src="logo/logo.png" alt="" width="170" height="170" class="img-fluid"></div>
+        <div class="logo"><img src="logo/logo.png" alt="" width="170" height="170" class="img-fluid"></div>
         <a href="index.html"><i class="bi bi-speedometer2"></i> Dashboard</a>
         <a href="projects.html" class="active"><i class="bi bi-briefcase"></i> Projects</a>
         <a href="tickets.html"><i class="bi bi-ticket-detailed"></i> Tickets</a>
@@ -30,17 +171,28 @@
         <!-- Top Navigation -->
         <div class="top-nav">
             <div>Projects</div>
-           <div class="user-info dropdown">
+            <div class="user-info dropdown">
                 <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="https://via.placeholder.com/35" alt="User" class="rounded-circle">
                     <span class="ms-2 d-none d-md-inline">John Doe</span>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-end">
-                     <li><a class="dropdown-item" href="user-settings.html"><i class="bi bi-gear me-2"></i>Settings</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <button class="btn btn mb-1 ">
-                    <i class="bi bi-box-arrow-right"></i>
-                </button>
+                <ul class="dropdown-menu dropdown-menu-start p-3" style="min-width: 200px;">
+                    <!-- إعدادات المستخدم -->
+                    <li>
+                        <a class="dropdown-item d-flex align-items-center py-2" href="user-settings.html">
+                            <i class="bi bi-gear fs-5 me-2"></i>
+                            <span class="fw-medium">setting</span>
+                        </a>
+                    </li>
+                    <!-- فاصل -->
+                    <li><hr class="dropdown-divider my-1"></li>
+                    <!-- زر الخروج -->
+                    <li>
+                        <a class="dropdown-item d-flex align-items-center py-2 text-danger" href="#">
+                            <i class="bi bi-box-arrow-right fs-5 me-2"></i>
+                            <span class="fw-medium"> logout</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -48,12 +200,12 @@
         <div class="dashboard-header">
             <h1>Projects</h1>
             <div class="d-flex justify-content-between align-items-center w-100 flex-wrap gap-2">
-                <div class="d-flex ms-auto gap-2">
-                    <div class="input-group">
+                <div class="d-flex ms-auto gap-2 w-100 w-md-auto">
+                    <div class="input-group flex-grow-1">
                         <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
                         <input type="text" class="form-control search-input" placeholder="Search projects" aria-label="Search" data-container="projectList">
                     </div>
-                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#addProjectModal">
+                    <button class="btn btn-sm btn-primary mt-2 mt-md-0" data-bs-toggle="modal" data-bs-target="#addProjectModal">
                         <i class="bi bi-plus-circle me-1"></i> Add
                     </button>
                 </div>
@@ -62,7 +214,7 @@
         <!-- Projects Grid -->
         <div class="row g-4 justify-content-center" id="projectList">
             <!-- Project Card 1 -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3" data-search="website redesign">
+            <div class="col-12 col-md-6 col-lg-4" data-search="website redesign" data-project-id="1">
                 <div class="card project-card h-100">
                     <div class="card-body d-flex flex-column">
                         <div class="d-flex justify-content-between align-items-start">
@@ -81,15 +233,32 @@
                             </div>
                         </div>
                         <div class="mt-3 d-flex flex-wrap gap-2">
-                            <button class="btn btn-sm btn-outline-primary flex-fill" data-bs-toggle="modal" data-bs-target="#editProjectModal">Edit</button>
-                            <button class="btn btn-sm btn-outline-danger delete-btn flex-fill" data-type="project" data-name="Website Redesign">Delete</button>
-                            <button class="btn btn-sm btn-primary flex-fill">View</button>
+                            <button class="btn btn-sm btn-outline-primary edit-btn flex-fill w-100 w-md-auto" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#editProjectModal"
+                                    data-project-id="1"
+                                    data-project-name="Website Redesign"
+                                    data-client="TechCorp"
+                                    data-start-date="2023-03-15"
+                                    data-end-date="2023-06-15"
+                                    data-description="Complete redesign of company website with modern UI and improved UX"
+                                    data-status="in-progress"
+                                    data-priority="high">
+                                Edit
+                            </button>
+                             <button class="btn btn-sm btn-outline-danger delete-btn flex-fill w-100 w-md-auto" 
+                                            data-bs-toggle="modal" 
+                                            data-bs-target="#confirmDeleteModal" 
+                                            data-name="project">
+                                        Delete
+                                    </button>
+                            <button class="btn btn-sm btn-primary flex-fill w-100 w-md-auto">View</button>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- Project Card 2 -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3" data-search="mobile app development">
+            <div class="col-12 col-md-6 col-lg-4" data-search="mobile app development" data-project-id="2">
                 <div class="card project-card h-100">
                     <div class="card-body d-flex flex-column">
                         <div class="d-flex justify-content-between align-items-start">
@@ -108,15 +277,32 @@
                             </div>
                         </div>
                         <div class="mt-3 d-flex flex-wrap gap-2">
-                            <button class="btn btn-sm btn-outline-primary flex-fill" data-bs-toggle="modal" data-bs-target="#editProjectModal">Edit</button>
-                            <button class="btn btn-sm btn-outline-danger delete-btn flex-fill" data-type="project" data-name="Mobile App Development">Delete</button>
-                            <button class="btn btn-sm btn-primary flex-fill">View</button>
+                            <button class="btn btn-sm btn-outline-primary edit-btn flex-fill w-100 w-md-auto" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#editProjectModal"
+                                    data-project-id="2"
+                                    data-project-name="Mobile App Development"
+                                    data-client="HealthPlus"
+                                    data-start-date="2023-01-10"
+                                    data-end-date="2023-03-10"
+                                    data-description="Development of a mobile application for iOS and Android platforms"
+                                    data-status="completed"
+                                    data-priority="medium">
+                                Edit
+                            </button>
+                           <button class="btn btn-sm btn-outline-danger delete-btn flex-fill w-100 w-md-auto" 
+                                            data-bs-toggle="modal" 
+                                            data-bs-target="#confirmDeleteModal" 
+                                            data-name="project">
+                                        Delete
+                                    </button>
+                            <button class="btn btn-sm btn-primary flex-fill w-100 w-md-auto">View</button>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- Project Card 3 -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3" data-search="data migration">
+            <div class="col-12 col-md-6 col-lg-4" data-search="data migration" data-project-id="3">
                 <div class="card project-card h-100">
                     <div class="card-body d-flex flex-column">
                         <div class="d-flex justify-content-between align-items-start">
@@ -135,9 +321,26 @@
                             </div>
                         </div>
                         <div class="mt-3 d-flex flex-wrap gap-2">
-                            <button class="btn btn-sm btn-outline-primary flex-fill" data-bs-toggle="modal" data-bs-target="#editProjectModal">Edit</button>
-                            <button class="btn btn-sm btn-outline-danger delete-btn flex-fill" data-type="project" data-name="Data Migration">Delete</button>
-                            <button class="btn btn-sm btn-primary flex-fill">View</button>
+                            <button class="btn btn-sm btn-outline-primary edit-btn flex-fill w-100 w-md-auto" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#editProjectModal"
+                                    data-project-id="3"
+                                    data-project-name="Data Migration"
+                                    data-client="FinTech Solutions"
+                                    data-start-date="2023-06-01"
+                                    data-end-date="2023-07-15"
+                                    data-description="Migrate data from legacy system to new platform"
+                                    data-status="pending"
+                                    data-priority="high">
+                                Edit
+                            </button>
+                            <button class="btn btn-sm btn-outline-danger delete-btn flex-fill w-100 w-md-auto" 
+                                            data-bs-toggle="modal" 
+                                            data-bs-target="#confirmDeleteModal" 
+                                            data-name="project">
+                                        Delete
+                                    </button>
+                            <button class="btn btn-sm btn-primary flex-fill w-100 w-md-auto">View</button>
                         </div>
                     </div>
                 </div>
@@ -222,37 +425,37 @@
                         <div class="row g-3">
                             <div class="col-12 col-md-6">
                                 <label class="form-label">Project Name</label>
-                                <input type="text" class="form-control" value="Website Redesign" required>
+                                <input type="text" class="form-control" id="editProjectName" value="" required>
                             </div>
                             <div class="col-12 col-md-6">
                                 <label class="form-label">Client</label>
-                                <input type="text" class="form-control" value="TechCorp" required>
+                                <input type="text" class="form-control" id="editClient" value="" required>
                             </div>
                             <div class="col-12 col-md-6">
                                 <label class="form-label">Start Date</label>
-                                <input type="date" class="form-control" value="2023-03-15" required>
+                                <input type="date" class="form-control" id="editStartDate" value="" required>
                             </div>
                             <div class="col-12 col-md-6">
                                 <label class="form-label">End Date</label>
-                                <input type="date" class="form-control" value="2023-06-15" required>
+                                <input type="date" class="form-control" id="editEndDate" value="" required>
                             </div>
                             <div class="col-12">
                                 <label class="form-label">Description</label>
-                                <textarea class="form-control" rows="3" required>Complete redesign of company website with modern UI and improved UX</textarea>
+                                <textarea class="form-control" id="editDescription" rows="3" required></textarea>
                             </div>
                             <div class="col-12 col-md-6">
                                 <label class="form-label">Project Status</label>
-                                <select class="form-select project-status" required>
-                                    <option value="in-progress" selected>In Progress</option>
+                                <select class="form-select project-status" id="editStatus" required>
                                     <option value="completed">Completed</option>
+                                    <option value="in-progress">In Progress</option>
                                     <option value="pending">Pending</option>
                                     <option value="on-hold">On Hold</option>
                                 </select>
                             </div>
                             <div class="col-12 col-md-6">
                                 <label class="form-label">Priority</label>
-                                <select class="form-select" required>
-                                    <option value="high" selected>High</option>
+                                <select class="form-select" id="editPriority" required>
+                                    <option value="high">High</option>
                                     <option value="medium">Medium</option>
                                     <option value="low">Low</option>
                                 </select>
@@ -281,7 +484,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Are you sure you want to delete this <span id="deleteType"></span>: <strong id="deleteName"></strong>?
+                    Are you sure you want to delete this <span id="deleteType">project</span>: <strong id="deleteName"></strong>?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -304,10 +507,58 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script/main.js"></script>
-     <script>
-         function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('active');
+   <script>
+    // تأكد من تنفيذ الكود بعد تحميل الصفحة بالكامل
+    document.addEventListener('DOMContentLoaded', function() {
+        // تحقق من تحميل Bootstrap
+        if (typeof bootstrap === 'undefined') {
+            console.error('Bootstrap غير محملة. تأكد من تحميل مكتبة Bootstrap قبل هذا السكربت.');
+            return;
         }
-     </script>
+        
+        // تحقق من وجود عناصر الحذف
+        const deleteButtons = document.querySelectorAll('.delete-btn');
+        const confirmDeleteBtn = document.getElementById('confirmDelete');
+        const deleteNameElement = document.getElementById('deleteName');
+        const deleteTypeElement = document.getElementById('deleteType');
+        
+        // إذا تم العثور على جميع العناصر المطلوبة
+        if (deleteButtons.length > 0 && confirmDeleteBtn && deleteNameElement && deleteTypeElement) {
+            // معالجة أزرار الحذف
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // استخراج البيانات من السمات
+                    const itemName = this.getAttribute('data-name') || 'العنصر';
+                    const itemType = this.getAttribute('data-type') || 'العنصر';
+                    
+                    // تحديث النص في نموذج التأكيد
+                    deleteNameElement.textContent = itemName;
+                    deleteTypeElement.textContent = itemType;
+                });
+            });
+            
+            // معالجة الحذف الفعلي
+            confirmDeleteBtn.addEventListener('click', function() {
+                // إغلاق نموذج التأكيد
+                const modalElement = document.getElementById('confirmDeleteModal');
+                const modal = bootstrap.Modal.getInstance(modalElement);
+                if (modal) {
+                    modal.hide();
+                }
+                
+                // يمكنك هنا إضافة الكود الذي يقوم بحذف العنصر
+                
+                // إظهار رسالة نجاح (اختياري)
+                const toastElement = document.getElementById('deleteSuccessToast');
+                if (toastElement) {
+                    const toast = new bootstrap.Toast(toastElement);
+                    toast.show();
+                }
+            });
+        } else {
+            console.error('خطأ: لا يمكن تهيئة وظيفة الحذف. تأكد من وجود جميع العناصر الضرورية في الصفحة.');
+        }
+    });
+</script>
 </body>
 </html>

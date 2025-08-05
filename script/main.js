@@ -149,3 +149,45 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
  
+        // Toggle sidebar for mobile
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+        }
+
+        // تهيئة النموذج عند الضغط على زر الحذف
+        document.addEventListener('DOMContentLoaded', function() {
+            // إعداد أزرار الحذف
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+            const userNameElement = document.getElementById('deleteUserName');
+            const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+            
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const userName = this.getAttribute('data-name');
+                    userNameElement.textContent = userName;
+                    // يمكن تخزين معرف المستخدم هنا إذا لزم الأمر
+                });
+            });
+            
+            // معالجة الحذف الفعلي
+            confirmDeleteBtn.addEventListener('click', function() {
+                // هنا يمكنك إضافة الكود الذي يقوم بحذف المستخدم
+                // مثلاً إرسال طلب إلى الخادم
+                
+                // إغلاق النموذج
+                const modalElement = document.getElementById('confirmDeleteModal');
+                const modal = bootstrap.Modal.getInstance(modalElement);
+                modal.hide();
+                
+                // إظهار رسالة نجاح
+                const toastElement = document.getElementById('deleteSuccessToast');
+                const toast = new bootstrap.Toast(toastElement);
+                toast.show();
+                
+                // يمكنك تحديث الجدول هنا أو إعادة تحميل الصفحة بعد فترة
+                setTimeout(() => {
+                    // location.reload(); // لإعادة تحميل الصفحة
+                }, 1000);
+            });
+        });
+    
