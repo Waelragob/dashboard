@@ -1417,3 +1417,23 @@ body {
     background-color: var(--light-color);
     border-radius: 8px;
 }
+
+/* إضافة سكرول للنموذج على أجهزة الموبايل والتابليت فقط */
+@media (max-width: 991.98px) {
+    #editProjectModal .modal-body , 
+    #addProjectModal .modal-body ,
+    #editTicketModal .modal-body , 
+    #addTicketModal .modal-body , 
+    #editServiceModal .modal-body {
+        max-height: 60vh;
+        overflow-y: auto;
+    }
+    #editProjectModal .modal-dialog , 
+     #addProjectModal .model-dialog ,
+     #editTicketModal .modal-dialog , 
+     #addTicketModal .modal-dialog , 
+     #editServiceModal .modal-dialog{
+        width: 95%;
+        margin: 20px auto;
+    }
+}
